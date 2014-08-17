@@ -26,7 +26,7 @@ float[] trace = new float[60];
 float e_integral;
 String pctime = "00:00:00";
 String arduinotime = "00:00:00";
-String begintime = "18:00:00";	// Set time to start arduino
+String begintime = "18:10:00";	// Set time to start arduino
 arduinodata arduinodata1 = new arduinodata();
 calcco2conc calcco2conc1 = new calcco2conc();
 
@@ -47,6 +47,9 @@ void setup(){
 void draw(){
 	int i;
 	int zrh;
+	y = year();
+	mon = month();
+	d = day();
 	h = hour();
 	m = minute();
 	s = second();
@@ -118,10 +121,13 @@ float getmol(float _volume){
 }
 
 void textoutputcalc(PrintWriter _textdata, int _mode, int _cr, int _cs, float _photo){
+	/*
 	int i;
 	int residue;
 	residue = 4 - _mode;
-	_textdata.print(pctime + "," + _cr);
+	*/
+	_textdata.print(y + "," + mon + "," + d + "," + h + "," + m + "," + s + "," + _mode + "," + _cr + "," + _cs + "," + _photo);
+	/*
 	for(i = 0; i < _mode; i++){
 		_textdata.print(",");
 	}
@@ -136,14 +142,18 @@ void textoutputcalc(PrintWriter _textdata, int _mode, int _cr, int _cs, float _p
 	for(i = 0; i < residue; i++){
 		_textdata.print(",");
 	}
+	*/
 	_textdata.println("");
 }
 
 void textoutputraw(PrintWriter _textdata, int _mode, int _value){
+	/*
 	int i;
 	int residue;
 	residue = 4 - _mode;
-	_textdata.print(pctime + ",");
+	*/
+	_textdata.print(y + "," + mon + "," + d + "," + h + "," + m + "," + s + "," + _mode + "," + _value);
+	/*
 	for(i = 0; i < _mode; i++){
 		_textdata.print(",");
 	}
@@ -151,6 +161,7 @@ void textoutputraw(PrintWriter _textdata, int _mode, int _value){
 	for(i = 0; i < residue; i++){
 		_textdata.print(",");
 	}
+	*/
 	_textdata.println("");
 }
 
