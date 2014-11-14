@@ -64,14 +64,15 @@ class calcco2conc{
 			case 3:
 			case 4:
 				i = 115;
-				j = 175;
+//				j = 175;
+				j = 115;
 				er = Math.pow((_difclone[i] - _difclone[j]), 2);
 				_n = -(float)(Math.log(_difclone[j] / _difclone[i]) / (j - i));
-				if(er < 1){
+				//if(er < 1){
 					_plateau = _smoothedclone[j];
-				}else{
-					_plateau = (float)((_smoothedclone[j] - _difclone[i] * Math.exp(-_n * (j - i))) / (1 - Math.exp(-_n * (j - i))));
-				}
+				//}else{
+				//	_plateau = (float)((_smoothedclone[j] - _difclone[i] * Math.exp(-_n * (j - i))) / (1 - Math.exp(-_n * (j - i))));
+				//}
 				break;
 		}
 		return _plateau;

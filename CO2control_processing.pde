@@ -26,7 +26,7 @@ float[] trace = new float[60];
 float e_integral;
 String pctime = "00:00:00";
 String arduinotime = "00:00:00";
-String begintime = "18:10:00";	// Set time to start arduino
+String begintime = "18:24:00";	// Set time to start arduino
 arduinodata arduinodata1 = new arduinodata();
 calcco2conc calcco2conc1 = new calcco2conc();
 
@@ -36,12 +36,16 @@ void setup(){
 	font = loadFont("Calibri-24.vlw");
 	textFont(font);
 	textAlign(LEFT);
-	myPort = new Serial(this, "/dev/cu.usbmodem1411", 9600);
+	myPort = new Serial(this, "/dev/cu.usbmodem1421", 9600);
 	myPort.buffer(10);
 	initialize();
 	String date = nf(y, 2) + nf(mon, 2) + nf(d, 2);
 	rawdata = createWriter(date + "rawdata.txt");
 	calcdata = createWriter(date + "calcdata.txt");
+	calcdata.print("Y,MON,D,H,MIN,S,CHAM,CR,CS,P");
+	calcdata.println("");
+	rawdata.print("Y,MON,D,H,MIN,S,CHAM,VALUE");
+	rawdata.println("");
 }
 
 void draw(){
@@ -75,7 +79,9 @@ void draw(){
 			co2conc[mode_previous] = calcco2conc1.value(mode_previous, zrhvalue);
 //			textoutput(calcdata, arduinotime, mode_previous, co2conc[mode_previous]);
 			if(mode_previous == 0){
-				cr[mode] = co2conc[mode_previous];
+				for(i = 0; i < 5; i++){
+					cr[i] = co2conc[mode_previous];
+				}
 			}else{
 				photo[mode_previous] = getphoto(cr[mode_previous], co2conc[mode_previous]);	// [µmol s-1]
 				textoutputcalc(calcdata, mode_previous, cr[mode_previous], co2conc[mode_previous], photo[mode_previous]);
