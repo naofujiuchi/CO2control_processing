@@ -64,8 +64,7 @@ class calcco2conc{
 			case 3:
 			case 4:
 				i = 115;
-//				j = 175;
-				j = 115;
+				j = 175;
 				er = Math.pow((_difclone[i] - _difclone[j]), 2);
 				_n = -(float)(Math.log(_difclone[j] / _difclone[i]) / (j - i));
 				//if(er < 1){

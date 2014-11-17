@@ -26,7 +26,7 @@ float[] trace = new float[60];
 float e_integral;
 String pctime = "00:00:00";
 String arduinotime = "00:00:00";
-String begintime = "18:24:00";	// Set time to start arduino
+String begintime = "17:45:00";	// Set time to start arduino
 arduinodata arduinodata1 = new arduinodata();
 calcco2conc calcco2conc1 = new calcco2conc();
 
@@ -79,9 +79,7 @@ void draw(){
 			co2conc[mode_previous] = calcco2conc1.value(mode_previous, zrhvalue);
 //			textoutput(calcdata, arduinotime, mode_previous, co2conc[mode_previous]);
 			if(mode_previous == 0){
-				for(i = 0; i < 5; i++){
-					cr[i] = co2conc[mode_previous];
-				}
+				cr[mode] = co2conc[mode_previous];
 			}else{
 				photo[mode_previous] = getphoto(cr[mode_previous], co2conc[mode_previous]);	// [µmol s-1]
 				textoutputcalc(calcdata, mode_previous, cr[mode_previous], co2conc[mode_previous], photo[mode_previous]);
